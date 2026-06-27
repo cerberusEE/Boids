@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://nub0da05gc4s"]
+
+[ext_resource type="Script" uid="uid://b7ox0hosmnpn2" path="res://Predator.gd" id="1_v1m0w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jvngy"]
+radius = 2.0
+
+[sub_resource type="Gradient" id="Gradient_wjtxr"]
+offsets = PackedFloat32Array(0.45528457, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jvngy"]
+gradient = SubResource("Gradient_wjtxr")
+width = 5
+height = 5
+fill = 2
+fill_from = Vector2(0.5185185, 0.4957265)
+fill_to = Vector2(0.96866095, 0.15954416)
+
+[node name="Predator" type="CharacterBody2D" unique_id=713024979]
+script = ExtResource("1_v1m0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1248779493]
+shape = SubResource("CircleShape2D_jvngy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1143077888]
+texture = SubResource("GradientTexture2D_jvngy")
