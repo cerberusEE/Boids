@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b8g57li5yojyh" path="res://Prey.gd" id="1_5x2o5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jvngy"]
-radius = 2.0
-
 [sub_resource type="Gradient" id="Gradient_nva4w"]
 offsets = PackedFloat32Array(0, 0.008130081)
 
@@ -15,11 +12,19 @@ height = 4
 fill = 1
 fill_from = Vector2(0.5185185, 0.52991456)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jvngy"]
+radius = 2.0
+
 [node name="Prey" type="CharacterBody2D" unique_id=1954924525]
 script = ExtResource("1_5x2o5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=686746232]
-shape = SubResource("CircleShape2D_jvngy")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1413994264]
 texture = SubResource("GradientTexture2D_nva4w")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1114574149]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=973346996]
+shape = SubResource("CircleShape2D_jvngy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=686746232]
+shape = SubResource("CircleShape2D_jvngy")

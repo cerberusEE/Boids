@@ -25,3 +25,8 @@ shape = SubResource("CircleShape2D_jvngy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1143077888]
 texture = SubResource("GradientTexture2D_jvngy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=23809696]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1840356838]
+shape = SubResource("CircleShape2D_jvngy")

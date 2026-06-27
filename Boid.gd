@@ -7,7 +7,7 @@ class_name Boid
 extends CharacterBody2D
 
 var speed: float = 100.0
-var max_force: float = 10.0
+var max_force: float = 20.0  # INCREASED for better responsiveness
 var perception_radius: float = 100.0
 var world_bounds: Rect2
 
