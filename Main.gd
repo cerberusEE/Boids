@@ -10,13 +10,13 @@ extends Node2D
 @export var prey_count: int = 200
 @export var prey_speed: float = 50.0
 @export var prey_perception: float = 100.0
-@export var prey_size: float = 8.0
+@export var prey_size: float = 3.0
 
 # Predator settings
 @export var predator_count: int = 5
-@export var predator_speed: float = 80.0
+@export var predator_speed: float = 200.0
 @export var predator_perception: float = 200.0
-@export var predator_size: float = 12.0
+@export var predator_size: float = 4.0
 
 # Boids weights - TUNED FOR BETTER FLOCKING
 @export var separation_weight: float = 1.2  # Prevent crowding
@@ -42,6 +42,7 @@ func _ready():
 		var prey = prey_scene.instantiate()
 		prey.position = Vector2(rng.randi_range(0, world_bounds.size.x), rng.randi_range(0, world_bounds.size.y))
 		prey.speed = prey_speed
+		prey.size = prey_size
 		prey.separation_weight = separation_weight
 		prey.alignment_weight = alignment_weight
 		prey.cohesion_weight = cohesion_weight
@@ -58,6 +59,7 @@ func _ready():
 		var predator = predator_scene.instantiate()
 		predator.position = Vector2(rng.randi_range(0, world_bounds.size.x), rng.randi_range(0, world_bounds.size.y))
 		predator.speed = predator_speed
+		predator.size = predator_size
 		predator.world_bounds = world_bounds
 		predator.prey_list = prey_list
 		predator.perception_radius = predator_perception

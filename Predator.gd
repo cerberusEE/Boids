@@ -24,8 +24,8 @@ signal prey_caught(predator, prey)
 
 func _ready() -> void:
 	$Sprite2D.modulate = color
-	$CollisionShape2D.shape.radius = 4
 	# Setup collision detection
+	$Area2D/CollisionShape2D2.shape.radius = size*1.1
 	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true
@@ -45,12 +45,6 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * speed
 	
 	super(delta)
-
-
-# Collision detection
-func _on_body_entered(body: Node2D) -> void:
-	if body is Prey:
-		prey_caught.emit(self, body)
 
 
 func find_closest_prey() -> Prey:

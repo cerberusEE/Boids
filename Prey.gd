@@ -22,8 +22,8 @@ signal prey_eaten(prey)
 
 func _ready() -> void:
 	$Sprite2D.modulate = color
-	$CollisionShape2D.shape.radius = 3
 	# Setup collision detection with predators
+	$Area2D/CollisionShape2D2.shape.radius = size*1.1
 	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true
@@ -83,7 +83,7 @@ func separate() -> Vector2:
 		var distance: float = diff.length()
 		if distance > 0:
 			# STRONGER separation at close range
-			steering += diff.normalized() / max(distance, 0.1)
+			steering += diff * cos(min(distance/10,1))
 			total += 1
 	
 	if total > 0:
