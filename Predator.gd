@@ -29,7 +29,7 @@ func _ready() -> void:
 	collision_mask = 0   # Don't collide with prey bodies
 
 	# Make Area2D detection larger
-	$Area2D/CollisionShape2D2.shape.radius = 15
+	$Area2D/CollisionShape2D2.shape.radius = size;
 	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true

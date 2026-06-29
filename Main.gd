@@ -13,8 +13,8 @@ extends Node2D
 @export var prey_size: float = 3.0
 
 # Predator settings
-@export var predator_count: int = 5
-@export var predator_speed: float = 200.0
+@export var predator_count: int = 2
+@export var predator_speed: float = 60.0
 @export var predator_perception: float = 200.0
 @export var predator_size: float = 4.0
 
@@ -50,7 +50,7 @@ func _ready():
 		prey.perception_radius = prey_perception
 		prey.prey_list = prey_list
 		prey.predator_list = predator_list
-		prey.connect("prey_eaten", Callable(self, "_on_prey_eaten"))  # Connect collision signal
+		prey.prey_eaten.connect(_on_prey_eaten)
 		prey_list.append(prey)
 		add_child(prey)
 	
@@ -63,10 +63,12 @@ func _ready():
 		predator.world_bounds = world_bounds
 		predator.prey_list = prey_list
 		predator.perception_radius = predator_perception
-		predator.connect("prey_caught", Callable(self, "_on_prey_caught"))  # Connect collision signal
+		predator.prey_caught.connect(_on_prey_caught)
 		predator_list.append(predator)
 		add_child(predator)
 
+func _on_prey_caught(predator: Predator, prey: Prey):
+	_on_prey_eaten(prey)
 
 # Handle prey eaten by predator
 func _on_prey_eaten(prey: Prey):
