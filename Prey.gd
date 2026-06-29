@@ -23,7 +23,12 @@ signal prey_eaten(prey)
 func _ready() -> void:
 	$Sprite2D.modulate = color
 	# Setup collision detection with predators
-	$Area2D/CollisionShape2D2.shape.radius = size*1.1
+	# Set collision layer for CharacterBody2D
+	collision_layer = 1  # Layer 1
+	collision_mask = 0   # Don't collide with anything (or set to specific layers)
+
+	# Make Area2D detection larger
+	$Area2D/CollisionShape2D2.shape.radius = 15
 	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true

@@ -25,11 +25,19 @@ signal prey_caught(predator, prey)
 func _ready() -> void:
 	$Sprite2D.modulate = color
 	# Setup collision detection
-	$Area2D/CollisionShape2D2.shape.radius = size*1.1
+	collision_layer = 2  # Layer 2
+	collision_mask = 0   # Don't collide with prey bodies
+
+	# Make Area2D detection larger
+	$Area2D/CollisionShape2D2.shape.radius = 15
 	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true
-
+	
+	
+func _on_body_entered(body: Node2D) -> void:
+	if body is Prey:
+		prey_caught.emit(self, body)
 
 func _physics_process(delta: float) -> void:
 	# Find closest prey within chase radius
